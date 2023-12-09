@@ -1,4 +1,4 @@
 First drivable working version. Controls are as follows:
 A & C for drivetrain - motors 1 & 2
 L for lift - motors 3 & 4
-R for intake - motors 10
+R for intake - motors 10 & 11
