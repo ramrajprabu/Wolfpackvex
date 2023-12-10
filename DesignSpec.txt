@@ -2,3 +2,5 @@ First drivable working version. Controls are as follows:
 A & C for drivetrain - motors 1 & 2
 L for lift - motors 10 & 11
 R for intake - motors 3 & 4
+
+50 is middle of axes A, B, C, and D on controller
