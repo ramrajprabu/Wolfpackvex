@@ -5,7 +5,5 @@ R for intake - motors 3 & 4
 Port 8 - bottom bumper
 Port 9 - top bumper
 Port 6 - TouchLED for switching autonomous segments
-Port 5 - TouchLED for restarting autonomous segment
-[WILL DISCUSS TOUCHLEDS ON WEDNESDAY, JANUARY 3RD]
 
 50 is middle of axes A, B, C, and D on controller
