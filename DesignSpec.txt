@@ -1,11 +1,17 @@
 First drivable working version. Controls are as follows:
 A & C for drivetrain - motors 1 & 2
-L for lift - motors 10 & 11
+L for lift - motors 12 & 11
 R for intake - motors 3 & 4
 Port 8 - bottom bumper
 Port 9 - top bumper
 Port 6 - TouchLED for switching autonomous segments
-Port 5 - TouchLED for restarting autonomous segment
-[WILL DISCUSS TOUCHLEDS ON WEDNESDAY, JANUARY 3RD]
+Port 5 - TouchLed for restarting/stopping autonomous
 
 50 is middle of axes A, B, C, and D on controller
+
+
+In Test Program:
+  E Up: Tests lift, intake, then drivetrain, each 10 times
+  E Down: Tests lift 10 times
+  F Up: Tests intake 10 times
+  F Down: Tests drivetrain forward/backward 10 times, left/right 90 10 times, and left/right 360 10 times
