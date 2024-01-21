@@ -1,7 +1,7 @@
 First drivable working version. Controls are as follows:
 A & C for drivetrain - motors 2 & 8
 L for lift - motors 3 & 9
-R for intake - motors 1 & 7
+R for intake - motors 7 & 1
 Port 5 - bottom bumper
 Port 11 - top bumper
 Port 4 - TouchLED for switching autonomous segments
