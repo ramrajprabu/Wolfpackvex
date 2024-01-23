@@ -1,10 +1,10 @@
 First drivable working version. Controls are as follows:
-A & C for drivetrain - motors 2 & 8
-L for lift - motors 3 & 9
-R for intake - motors 7 & 1
-Port 5 - bottom bumper
-Port 11 - top bumper
-Port 4 - TouchLED for switching autonomous segments
-Port 10 - TouchLed for restarting/stopping autonomous
+A & C for drivetrain - motors 5 & 11
+L for lift - motors 10 & 4
+R for intake - motors 6 & 12
+Port 9 - bottom bumper
+Port 3 - top bumper
+Port 8 - TouchLED for switching autonomous segments
+Port 2 - TouchLed for restarting/stopping autonomous
 
 50 is middle of axes A, B, C, and D on controller
