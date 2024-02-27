@@ -1,0 +1,18 @@
+{
+	"project": {
+		"name": "SelfBalancing",
+		"slot": 1,
+		"description": "",
+		"platform": "IQ2",
+		"creationDate": "Tue, 27 Feb 2024 07:10:52 GMT",
+		"language": "cpp",
+		"sdkVersion": "IQ2_20230627_09_00_00",
+		"cpp": {
+			"includePath": []
+		}
+	},
+	"extension": {
+		"version": "0.5.0",
+		"json": 1
+	}
+}
