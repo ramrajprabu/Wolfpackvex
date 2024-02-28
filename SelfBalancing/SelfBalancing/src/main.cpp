@@ -31,7 +31,7 @@ inertial BrainInertial = inertial();
 controller Controller = controller();
 motor wheelsMotorA = motor(PORT6, false);
 motor wheelsMotorB = motor(PORT12, true);
-motor_group wheels = motor_group(wheelsMotorA, wheelsMotorB);
+//motor_group wheels = motor_group(wheelsMotorA, wheelsMotorB);
 
 
 
@@ -49,7 +49,7 @@ using namespace vex;
 
 int Brain_precision = 0, Console_precision = 0;
 
-float currentRoll, roll_error, integral, derivative, ki, kd, kp, target, lastError, pidsum, currentVelocity, targetVelocity, velocityError;
+float currentRoll, rollError, integral, derivative, ki, kd, kp, target, lastError, pidsum, currentVelocity, targetVelocity, velocityError;
 float currentDirection, lastDirection;
 
 float backlash = 1;
@@ -86,19 +86,25 @@ int whenStarted1() {
   while (BrainInertial.isCalibrating()) { task::sleep(50); }
   derivative = 0.0;
   integral = 0.0;
-  kp = 0.074;
-  ki = 0.00001;
-  kd = -0.11;
+  kp = 3.114;
+  ki = 0.230;
+  kd = 1.69;
   
   target = 0.0;
   lastError = 0.0;
   targetVelocity = 0.0;
-  wheels.setMaxTorque(100.0, percent);
-  wheels.setStopping(coast);
-  wheels.setVelocity(0.0, percent);
-  wheels.spin(forward);
+  //wheelsMotorA.setMaxTorque(100.0, percent);
+  wheelsMotorA.setStopping(brake);
+  wheelsMotorA.setVelocity(0.0, percent);
+  wheelsMotorA.spin(forward);
+
+  //wheelsMotorB.setMaxTorque(100.0, percent);
+  wheelsMotorB.setStopping(brake);
+  wheelsMotorB.setVelocity(0.0, percent);
+  wheelsMotorB.spin(reverse);
+
   lastDirection = 1;
-  Brain_precision = -1;
+  
   while (true) {
 
     // Get the current direction of the motor
@@ -114,18 +120,29 @@ int whenStarted1() {
     //}
   //}
     currentRoll = BrainInertial.orientation(roll, degrees);
-    roll_error = target - currentRoll;
-    integral = integral + roll_error * 0.25;
-    derivative = BrainInertial.gyroRate(xaxis, dps);
-    Brain.Screen.setCursor(1, 1);
-    lastError = roll_error;
-    pidsum = (integral * ki) + (derivative * kd) + (roll_error * kp);
+    rollError = target - currentRoll;
+    integral = integral + rollError * (1/20.0);
+    //derivative = BrainInertial.gyroRate(xaxis, dps);
+    derivative = (rollError - lastError) / 20.0;
+    lastError = rollError;
+    pidsum = (integral * ki) + (derivative * kd) + (rollError * kp);
 
-    printf("kp = %.3f, ki = %.3f, kd = %.3f, roll = %.3f, pid = %.3f\n ", kp, ki, kd, currentRoll, pidsum);
+    
+    
 
-    wheels.setVelocity((pidsum * 5.0), rpm);
+    printf("kp = %.3f , ki = %.3f , kd = %.3f , roll = %.3f , pid = %.3f \n",
+           static_cast<float>(kp),
+           static_cast<float>(ki),
+           static_cast<float>(kd),
+           static_cast<float>(currentRoll),
+           static_cast<float>(pidsum));
+    fflush(stdout);
+
+    wheelsMotorA.setVelocity((pidsum * 5.0), rpm);
+    wheelsMotorB.setVelocity((pidsum * 5.0), rpm);
+
     lastDirection = currentDirection;
-  wait(20, msec);
+    wait(20, msec);
   }
   return 0;
 }
